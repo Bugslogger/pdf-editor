@@ -24,12 +24,6 @@ const PdfContainer = () => {
     pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
   }, []);
 
-  // if (el) {
-  //   el.addEventListener("mouseup", (e) => {
-  //     console.log(e);
-  //   });
-  // }
-
   const changePage = (param) => {
     if (param === "prev") {
       setpageNumber((prev) => prev - 1);
@@ -42,17 +36,11 @@ const PdfContainer = () => {
 
   function onDragEnd(e) {
     const newItem = e.active.data.current?.title;
-    console.log("Drag End: ", e);
-    window.removeEventListener("mousemove", (e) => {
-      console.log("rm: ", e);
-    });
+
     if (!newItem) {
       return;
     }
-    if (e.over?.id === "droppable") {
-      const rectX = e.over.rect.left;
-      const rectY = e.over.rect.top;
-
+    if (e.over?.id === "droppable") 
       const temp = [...newItems];
       temp.push({
         id: e.active.id,
